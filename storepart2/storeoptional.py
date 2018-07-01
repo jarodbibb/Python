@@ -1,6 +1,6 @@
 class Store(object):
-    def __init__(self, prod1, prod2, prod3, location, owner):
-        self.product = [prod1, prod2, prod3]
+    def __init__(self, location, owner):
+        self.product = []
         self.location = location
         self.owner = owner
     def add_product(self, prod):
@@ -16,6 +16,9 @@ class Store(object):
     def display(self):
         print "Owner: ", self.owner, "Products: ", self.print_p(), "location: ", self.location
 
-new_store = Store("car", "bike", "pack", "san jose", "jarod")
+new_store = Store( "san jose", "jarod")
 
-new_store.add_product("tic tac").remove_product("bike").display()
+new_store.add_product("tic tac").add_product("bike").display()
+
+if __name__ == "__main__":
+    print "21", new_store

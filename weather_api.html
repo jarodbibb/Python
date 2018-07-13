@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="eng">
+    <head>
+        <title> Weather Api</title>
+        <meta-charset= "UTF-8">
+        <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    
+    </head>
+    <body>
+          <form>
+            <input type="text" name="location" id="location" value="">
+            <input id="btn" type="submit" value="Search">
+          </form>
+          <div class="weather"> </div>
+        <script>
+            $(document).ready(function() {
+                console.log('hello')
+                $('form').submit(function(){
+                    var locat = $('#location').val();
+                    console.log("testing locat;", locat)
+                $.get("https://api.openweathermap.org/data/2.5/weather?q=" + locat + "&APPID=2163f3b53c6aa44d236c18da7a4262eb", function(res){
+                    $('.weather').append("<p>"+ res.name +"</p>", "<p>" + res.main.temp + "</p>")
+                })
+                    return false;
+                });
+                
+            })
+        
+        </script>
+    </body>
+</html>

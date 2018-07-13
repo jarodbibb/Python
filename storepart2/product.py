@@ -18,5 +18,4 @@ spoon = Product(13, "spoon")
 print spoon.price
 
 
-
     

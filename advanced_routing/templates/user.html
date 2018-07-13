@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Color Changing form</title>
+        <!-- <style> 
+        body { 
+            background-color: rgb({{red}}, {{green}}, {{blue}})
+        }
+        </style> -->
+    </head>
+    
+    <body style="background-color:rgb({{red}},{{green}},{{blue}}); ">
+
+      <form action= '/color' name='request' method= 'post' >
+        <label for='red'>Red: 
+            <input type='text' name='red' id='red' value={{red}}>
+        </label>
+        <label for='green'>Green:
+            <input type='text' name='green' id='green' value={{green}}>
+        </label>
+        <label for= 'blue'> Blue: 
+            <input type='text' name='blue' id='blue' value={{blue}}>
+        </label>
+        <input type="submit" value="show my color">
+
+      </form>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+
+
+        <!DOCTYPE HTML>
+<html lang="eng">
+    <head>
+        <title>pokemon</title>
+        <meta-charset="UTF-8">
+        <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+      
+    </head>
+    <style>
+    .bod {
+        display: inline-block;
+        width: 600px;
+        border: 1px solid blue;
+    }
+    .selected {
+        display: inline-block;
+        width: 300px;
+        border: 1px solid red;
+        vertical-align: top;
+    }
+    </style>
+    <body>
+        <div class="bod">
+            </div>
+
+        <div class="selected">
+            hello
+        </div>
+        <script>
+        for(var i= 0 ; i < 152; i++ ){
+            $(".bod").append("<img id="+i+" src='http://pokeapi.co/media/img/" + i + ".png' >")
+            }
+            
+      
+        </script>
+        <script> 
+          $(document).ready(function(){
+              $('img').click(function(){
+                  $(".selected").html("<img src='http://pokeapi.co/media/img/" + this.id + ".png' > ")
+                  console.log("Testing this:", this.id)
+                  $.get("https://pokeapi.co/api/v2/pokemon/" + this.id + "", function(res){
+                      console.log("checking response:", res);
+                    //   for(i = 0; i < res.types.length; i++){
+                          console.log("trying to traverse json: ", res.name)
+                    $(".selected").append("<p>" + res.name, res.height + "</p>");
+                    
+                    //   }
+
+                  }, "json")
+              })
+
+})
+        
+        </script>
+    </body>
+</html>

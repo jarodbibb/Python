@@ -24,7 +24,8 @@ class Hospital(object):
         pat.bed = "none"
         self.patients.remove(pat)
         return self
-    
+    def __repr__(self):
+        return "<Hospital object {}, capacity {}>".format(self.hosp_name, self.capacity)
 
 new_pat = Patient(8, "jarod", "hella")
 new_pat1 = Patient(1, "arod", "hell")
@@ -38,6 +39,8 @@ kaiser.discharge(new_pat3)
 
 
 print "hosp_patients", new_pat3.bed
+
+print "repr object testing ", kaiser
 
 
 

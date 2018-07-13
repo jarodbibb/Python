@@ -5,6 +5,8 @@ class Call(object):
         self.num  = num 
         self.time = time 
         self.reason = reason
+    def __repr__(self):
+        return "<Call object {}, name {}, time {}, reason {}>".format(self.id, self.name, self.time, self.reason)
     
     def display(self):
         print "id: ", self.id, "name: ", self.name, "number: ", self.num, "time: ", self.time
@@ -30,6 +32,7 @@ class Center(object):
                 self.calls.remove(loser)
         return self
 
+
     def info(self):
         print "name: ", self.printing()
     def organize(self):
@@ -45,6 +48,8 @@ class Center(object):
 new_call = Call("8", "Jarod", "4086913359", 4, "mad")
 call2 = Call("9", "tom", "3838383", 3, "happy")
 call2.display()
+
+print "repr method" , new_call
 
 queue = Center(new_call)
 queue.add(call2)

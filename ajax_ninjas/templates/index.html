@@ -1,21 +1,19 @@
 <html>
     <head> <h1>Ajax Ninjas</h1>
         <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $('button').click(function(){
-
-                })
-            })
-                
-        </script>
+        <script type="text/javascript" src="{{ url_for('static', filename='button.js') }}"></script>
 
     </head>
     <body>
-    
+        <h2></h2>
+        <img src="">
         <button id="red"> RED</button>
         <button id="blue"> Blue</button>
         <button id="orange"> Orange</button>
         <button id="purple"> Purple </button>
+        <form id="april" action="/april" mehtod="post">
+            <input id="april" type="text">
+            <input type="submit">
+        </form>
     </body>
 </html>

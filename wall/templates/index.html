@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Registration</title>
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='styles/normalize.css') }}">
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='styles/skeleton.css') }}">
+        
+    </head>
+    <div class="container">
+
+        <h3>
+            Register
+        </h3>
+        <form action='/register' method="post">
+            <label>First Name:</label>
+            <input type="text" id="first_name" name="first_name">
+            <label>Last Name:</label>
+            <input type="text" id="last_name" name="last_name">
+            <label>Email:</label>
+            <input type="text" id="email" name="email" placeholder="example@example.com">
+            <label>Password:</label>
+            <input type="password" id="password" name="password">
+            <label>Confirm Password:</label>
+            <input type='confirm' id='confirm' name='confirm'>
+            <input type='submit'>
+        </form> 
+    </div>
+    <div class='container'>
+        <h3>Already a User? LOGIN HERE!</h3>
+        <form action='/login' method="post">
+        <label>Email:</label>
+        <input type="text"  id="email" name="email">
+        <label>Password:</label>
+        <input type="password" id="password" name="password">
+        <input type="submit">
+        </form>
+    </div>
+
+</html>

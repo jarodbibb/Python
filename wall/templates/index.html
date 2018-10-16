@@ -3,7 +3,7 @@
         <title>Registration</title>
         <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='styles/normalize.css') }}">
         <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='styles/skeleton.css') }}">
-        
+
     </head>
     <div class="container">
 
@@ -20,17 +20,29 @@
             <label>Password:</label>
             <input type="password" id="password" name="password">
             <label>Confirm Password:</label>
-            <input type='confirm' id='confirm' name='confirm'>
-            <input type='submit'>
+            <input type='password' id='confirm' name='confirm'>
+            <div>
+
+                {% with errors = get_flashed_messages(category_filter=["register"])%}
+                {% if errors %}
+                <ul>
+                    {%  for msg in errors%}
+                    <li> {{msg }}</li>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </ul>
+            </div>
+              <input type='submit'>
         </form> 
     </div>
     <div class='container'>
         <h3>Already a User? LOGIN HERE!</h3>
         <form action='/login' method="post">
         <label>Email:</label>
-        <input type="text"  id="email" name="email">
+        <input type="text"  id="log_email" name="email">
         <label>Password:</label>
-        <input type="password" id="password" name="password">
+        <input type="password" id="log_password" name="password">
         <input type="submit">
         </form>
     </div>

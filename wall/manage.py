@@ -55,7 +55,15 @@ def create():
 
 @app.route('/wall', methods=['GET'])
 def wallin():
-        return render_template('wall.html')
+    query = "SELECT first_name, email FROM users"
+    users = mysql.query_db(query)
+    tin =  users[0]['first_name']
+    print tin
+    data = {
+        "tin": tin,
+        "users":users
+    }
+    return render_template('wall.html', users = users)
 
 
 app.run(debug=True)

@@ -84,10 +84,40 @@ def login():
     if user: 
         encrypted_password = md5.new(password ).hexdigest()
         if user[0]['password'] == encrypted_password:
+            #save user in session and send to the wall
+            session['uid'] = user[0]['id']
+            return redirect('/wall')
+        else: 
+            #send invalid login back with flash error
+            flash('Incorrect username or password', 'error')
+            return redirect('/')
+    else: 
+        flash("Incorrect username or password", 'error')
+        return redirect('/')
 
+        
+#route to post a message
+@app.route('/message', methods= ["POST"])
+def create_message():
+    message = request.form['message_text']
+    if len(message) < 1:
+        flash("Message cannot be blank", "message")
+        return redirect('/wall')
+    elif len(message > 1 ) and (session['uid'])
+        user = session['uid']
+        query = "INSERT INTO messages (users_id, message, created_at, updated_at) VALUES (:uid, :message, NOW(), NOW())"
+        data = { 'uid': user,
+                'message': message}
+        db_message = mysql.query_db(query, data)
 
+        #redirect to see message
+        url = '/wall#' + str(db_message)
+        return redirect(url)  
 
-    
+@app.route('/comment/<message_id>', methods=['POST'])
+def create_comment(message_id):
+    comment = request.form['comment_text'] 
+    message_id = 
     
 #     if length < 2:
 #         print "hello"

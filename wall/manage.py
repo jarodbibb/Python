@@ -114,11 +114,60 @@ def create_message():
         url = '/wall#' + str(db_message)
         return redirect(url)  
 
-@app.route('/comment/<message_id>', methods=['POST'])
+@app.route('/comment', methods=['POST'])
+# /<message_id>
 def create_comment(message_id):
     comment = request.form['comment_text'] 
-    message_id = 
+    message_id = request.form['message_id']
+    uid = session['uid']
     
+    #validate comments 
+
+    if len(comment) < 1: 
+        session['message_id'] = int(message_id)
+
+        flash("Comment cannot be blank", "comment")
+        url = '/wall#' + str(message_id)
+        return redirect(url)
+
+    elif (len(comment) > 1 ) and (session['uid']):
+        query = "INSERT INTO comments (users_id, messages_id, comment, created_at, updated_at) VALUES (:uid, :mid, :comment, NOW(), NOW())"
+        data =  {
+            'uid': uid,
+            'mid': message_id,
+            'comment': comment,
+        }
+        dbresponse = mysql.query_db(query, data)
+        url = '/wall#' + str(message_id) + "+" + str(dbresponse)
+        return redirect(url)
+
+#route to delete a message
+@app.route('delete/message', methods= ['POST'])
+def delete_message():
+    commentquery = "DELETE FROM comments WHERE comments.messgages_id = :id"
+    commentdata = {'id': request.form['message_id']}
+    mysql.query_db(commentquery, commentdata)
+
+    messageQuery = "DELETE FROM messages WHERE messages.id = :id"
+    messageData = {'id': request.form['message_id']}
+    mysql.query_db(messageQuery, messageData)
+    flash("message Deleted", "success")
+    return redirect('/wall')
+
+#route to delete comment
+@app.route('delete/comment', methods =["POST"])
+def delete_comment():
+    commentQuery = "DELETE FROM comments WHERE comments.id = :id"
+    commentData = {'id': request.form['comment_id']}
+    mysql.query_db(commentQuery, commentData)
+
+    message_id = request.form['message_id']
+    session['message_id'] = int(message_id)
+    url = '/wall#' + str(message_id)
+    return redirect(url)
+app.run(debug=True)
+
+
 #     if length < 2:
 #         print "hello"
 #         passFlag = False
